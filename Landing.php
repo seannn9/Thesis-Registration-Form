@@ -35,7 +35,8 @@
     <title>Registration Successful</title>
 </head>
 <body>
-    <div class="section">        
+    <div class="section">
+        <img src="./dlsud-with-name.png" alt="" style="display: block; margin: 0 auto; width: 50%;">    
         <h1 align="center">Registration Successful</h1>
         <h2 align="center">Your TITLE ID is: <span style="color: #00bd65"><?php echo $userid['TITLE_ID']; ?></span> </h2>
         <div class="button-container">

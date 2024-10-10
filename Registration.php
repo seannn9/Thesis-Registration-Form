@@ -55,6 +55,7 @@
             method="post"
             style="display: flex; justify-content: center">
             <div class="section">
+                <img src="./dlsud-with-name.png" style="display: block; margin: 0 auto;">
                 <fieldset>
                     <legend class="title-legend">Thesis Submission</legend>
                     <label for="title">Title</label>
@@ -249,6 +250,7 @@
                                 id="contact_number"
                                 placeholder="e.g. 0987654321"
                                 pattern="[0-9]{10}"
+                                title="Mobile Number should be 10 digits"
                                 required
                             />
 
