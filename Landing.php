@@ -38,6 +38,9 @@
     <div class="section">        
         <h1 align="center">Registration Successful</h1>
         <h2 align="center">Your USERID is: <?php echo $userid['TITLE_ID']; ?> </h2>
+        <div class="button-container">
+            <button onClick="window.location.href='Registration.php'">Go Back</button>
+        </div>
     </div>
 </body>
 

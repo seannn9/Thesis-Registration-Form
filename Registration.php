@@ -10,46 +10,42 @@
     <?php
     ob_start();
     if (isset($_POST['submit'])){
-        $titleErr = "";
-        $authorErr = "";
-        $adviserErr = "";
-        $programErr = "";
-        $emailErr = "";
-        $contactErr = "";
-        $dateofsubErr = "";
-        $subjectErr = "";
-        $contactlenErr = "";
+        $errors = [];
 
         if (empty($_POST['title'])) {
-            $titleErr = "Theseis title is required";
+            $errors[] = "Theseis title is required";
         }
         if (empty($_POST['author1_lname']) or empty($_POST['author1_mname']) or empty($_POST['author1_fname']) or empty($_POST['author2_lname']) or empty($_POST['author2_mname']) or empty($_POST['author2_fname']) or empty($_POST['author3_lname']) or empty($_POST['author3_mname']) or empty($_POST['author3_fname'])) {
-            $authorErr = "Author's full name is required";
+            $errors[] = "Author's full name is required";
         }
         if (empty($_POST['adviser_lname']) or empty($_POST['adviser_mname']) or empty($_POST['adviser_fname']) or empty($_POST['coadviser_lname']) or empty($_POST['coadviser_mname']) or empty($_POST['coadviser_fname'])) {
-            $adviserErr = "Adviser's full name is required";
+            $errors[] = "Adviser's full name is required";
         }
         if (empty($_POST['program']) or empty($_POST['coprogram'])) {
-            $programErr = "Program is required";
+            $errors[] = "Program is required";
         }
         if (empty($_POST['email'])) {
-            $emailErr = "Email is required";
+            $errors = "Email is required";
         }
         if (empty($_POST['contact_number'])) {
-            $contactErr = "Contact number is required";
+            $errors = "Contact number is required";
         }
         if (isset($_POST['contact_number'])) {
             $contact_number = $_POST['contact_number'];
             if (strlen($contact_number) != 10) {
-                $contactlenErr = "Contact number should be 10 digits";
-                // echo "<script>alert('$contactlenErr')</script>";
+                $errors = "Contact number should be 10 digits";
             }
         }
         if (empty($_POST['subjects'])) {
-            $subjectErr = "Subject is required";
+            $errors = "Subject is required";
         }
         if (empty($_POST['submission'])) {
-            $dateofsubErr = "Date of submission is required";
+            $errors = "Date of submission is required";
+        }
+    }
+    function retain_value($field_name) {
+        if (isset($_POST[$field_name])) {
+            echo htmlspecialchars($_POST[$field_name]);
         }
     }
     ?>
@@ -215,7 +211,7 @@
                                 type="text"
                                 name="sy"
                                 id="sy"
-                                placeholder="eg 2024-2025"
+                                placeholder="e.g. 2024-2025"
                                 required
                             />
 
@@ -242,7 +238,7 @@
                                 type="email"
                                 name="email"
                                 id="email"
-                                placeholder="Email"
+                                placeholder="e.g. hello@email.com"
                                 required
                             />
 
@@ -251,7 +247,7 @@
                                 type="tel"
                                 name="contact_number"
                                 id="contact_number"
-                                placeholder="Phone Number"
+                                placeholder="e.g. 0987654321"
                                 pattern="[0-9]{10}"
                                 required
                             />
@@ -270,8 +266,8 @@
                         </div>
                     </div>
                     <div class="button-container">
+                        <button onClick="window.location.reload();"> Refresh</button>   
                         <button type="submit" value="Submit" name="submit">Submit</button>
-                        <button onClick="window.location.reload();"> Refresh</button>
                     </div>
                 </fieldset>
             </div>
@@ -279,7 +275,7 @@
         <!-- PHP code for sending data to database -->
         <?php
         if (isset($_POST['submit'])) {
-            if ($titleErr == "" && $authorErr == "" && $adviserErr == "" && $programErr == "" && $emailErr == "" && $contactErr == "" && $contactlenErr == "" && $dateofsubErr == "" && $subjectErr == "") {
+            if (empty($errors)) {
                 $serverName = "DESKTOP-5QTREIB\SQLEXPRESS";
                 $connectionOptions = [
                     "Database" => "WEBAPP",
