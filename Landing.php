@@ -37,7 +37,7 @@
 <body>
     <div class="section">        
         <h1 align="center">Registration Successful</h1>
-        <h2 align="center">Your USERID is: <?php echo $userid['TITLE_ID']; ?> </h2>
+        <h2 align="center">Your TITLE ID is: <span style="color: #00bd65"><?php echo $userid['TITLE_ID']; ?></span> </h2>
         <div class="button-container">
             <button onClick="window.location.href='Registration.php'">Go Back</button>
         </div>
