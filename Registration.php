@@ -9,38 +9,67 @@
     <body>
     <?php
     ob_start();
+    $title_nameErr = "";
+    $author1nameErr = "";
+    $author2nameErr = "";
+    $author3nameErr = "";
+    $adviser_nameErr = "";
+    $coadviser_nameErr = "";
+    $programErr = "";
+    $coprogramErr = "";
+    $emailErr = "";
+    $contactErr = "";
+    $contactlenErr = "";
+    $subjectErr = "";
+    $submissionErr = "";
+    $schoolyearErr = "";
+    
+    $errors = [];
     if (isset($_POST['submit'])){
-        $errors = [];
-
         if (empty($_POST['title'])) {
-            $errors[] = "Theseis title is required";
+            $title_nameErr = "Thesis title is required";
         }
-        if (empty($_POST['author1_lname']) or empty($_POST['author1_mname']) or empty($_POST['author1_fname']) or empty($_POST['author2_lname']) or empty($_POST['author2_mname']) or empty($_POST['author2_fname']) or empty($_POST['author3_lname']) or empty($_POST['author3_mname']) or empty($_POST['author3_fname'])) {
-            $errors[] = "Author's full name is required";
+        if (empty($_POST['author1_lname']) or empty($_POST['author1_mname']) or empty($_POST['author1_fname'])) {
+            $author1nameErr = "Author's full name is required";
         }
-        if (empty($_POST['adviser_lname']) or empty($_POST['adviser_mname']) or empty($_POST['adviser_fname']) or empty($_POST['coadviser_lname']) or empty($_POST['coadviser_mname']) or empty($_POST['coadviser_fname'])) {
-            $errors[] = "Adviser's full name is required";
+        if (empty($_POST['author2_lname']) or empty($_POST['author2_mname']) or empty($_POST['author2_fname'])) {
+            $author2nameErr = "Author's full name is required";
         }
-        if (empty($_POST['program']) or empty($_POST['coprogram'])) {
-            $errors[] = "Program is required";
+        if (empty($_POST['author3_lname']) or empty($_POST['author3_mname']) or empty($_POST['author3_fname'])) {
+            $author3nameErr = "Author's full name is required";
+        }
+        if (empty($_POST['adviser_lname']) or empty($_POST['adviser_mname'])) {
+            $adviser_nameErr = "Adviser's full name is required";
+        }
+        if (empty($_POST['adviser_fname']) or empty($_POST['coadviser_lname']) or empty($_POST['coadviser_mname']) or empty($_POST['coadviser_fname'])) {
+            $coadviser_nameErr = "Co-Adviser's full name is required";
+        }
+        if (empty($_POST['program'])) {
+            $programErr = "Program is required";
+        }
+        if (empty($_POST['coprogram'])) {
+            $coprogramErr = "Co-Program is required";
         }
         if (empty($_POST['email'])) {
-            $errors = "Email is required";
+            $emailErr = "Email is required";
         }
         if (empty($_POST['contact_number'])) {
-            $errors = "Contact number is required";
+            $contactErr = "Contact number is required";
         }
         if (isset($_POST['contact_number'])) {
             $contact_number = $_POST['contact_number'];
             if (strlen($contact_number) != 10) {
-                $errors = "Contact number should be 10 digits";
+                $contactlenErr = "Contact number should be 10 digits";
             }
         }
         if (empty($_POST['subjects'])) {
-            $errors = "Subject is required";
+            $subjectErr = "Subject is required";
         }
         if (empty($_POST['submission'])) {
-            $errors = "Date of submission is required";
+            $submissionErr = "Date of submission is required";
+        }
+        if(empty($_POST['sy'])) {
+            $schoolyearErr = "School year is required";
         }
     }
     function retain_value($field_name) {
@@ -64,8 +93,9 @@
                         name="title"
                         id="title"
                         placeholder="Thesis Title"
-                        required
+                        
                     />
+                    <p style="color: red; font-size: 10px;"> <?php echo $title_nameErr;?></p>
 
                     <div class="columns">
                         <div class="left-column">
@@ -76,23 +106,24 @@
                                     name="author1_lname"
                                     placeholder="Last Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="author1_fname"
                                     placeholder="First Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="author1_mname"
                                     placeholder="Middle Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                             </div>
+                            <p style="color: red; font-size: 10px;"> <?php echo $author1nameErr;?></p>
 
                             <label>Author 2</label>
                             <div class="name-group">
@@ -101,23 +132,24 @@
                                     name="author2_lname"
                                     placeholder="Last Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="author2_fname"
                                     placeholder="First Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="author2_mname"
                                     placeholder="Middle Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                             </div>
+                            <p style="color: red; font-size: 10px;"> <?php echo $author2nameErr;?></p>
 
                             <label>Author 3</label>
                             <div class="name-group">
@@ -126,23 +158,24 @@
                                     name="author3_lname"
                                     placeholder="Last Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="author3_fname"
                                     placeholder="First Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="author3_mname"
                                     placeholder="Middle Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                             </div>
+                            <p style="color: red; font-size: 10px;"> <?php echo $author3nameErr;?></p>
 
                             <label>Adviser</label>
                             <div class="name-group">
@@ -151,23 +184,24 @@
                                     name="adviser_lname"
                                     placeholder="Last Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="adviser_fname"
                                     placeholder="First Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="adviser_mname"
                                     placeholder="Middle Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                             </div>
+                            <p style="color: red; font-size: 10px;"> <?php echo $adviser_nameErr;?></p>
 
                             <label>Co-Adviser</label>
                             <div class="name-group">
@@ -176,26 +210,27 @@
                                     name="coadviser_lname"
                                     placeholder="Last Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="coadviser_fname"
                                     placeholder="First Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                                 <input
                                     type="text"
                                     name="coadviser_mname"
                                     placeholder="Middle Name"
                                     class="name-input"
-                                    required
+                                    
                                 />
                             </div>
+                            <p style="color: red; font-size: 10px;"> <?php echo $coadviser_nameErr;?></p>
 
                             <label for="program">Program:</label>
-                            <select name="program" id="program" required>
+                            <select name="program" id="program" >
                                 <option value="">...</option>
                                 <option value="CPE">
                                     Computer Engineering
@@ -204,8 +239,9 @@
                                     Electronics Engineering
                                 </option>
                             </select>
+                            <p style="color: red; font-size: 10px;"> <?php echo $programErr;?></p>
                         </div>
-
+                        
                         <div class="right-column">
                             <label for="sy">School Year:</label>
                             <input
@@ -213,19 +249,20 @@
                                 name="sy"
                                 id="sy"
                                 placeholder="e.g. 2024-2025"
-                                required
                             />
+                            <p style="color: red; font-size: 10px;"> <?php echo $schoolyearErr;?></p>
 
                             <label for="submission">Date of Submission:</label>
                             <input
                                 type="date"
                                 name="submission"
                                 id="submission"
-                                required
+                                
                             />
+                            <p style="color: red; font-size: 10px;"> <?php echo $submissionErr;?></p>
 
                             <label for="subjects">Subject of Study:</label>
-                            <select name="subjects" id="subjects" required>
+                            <select name="subjects" id="subjects" >
                                 <option value="">...</option>
                                 <option value="WebDev">Web Development</option>
                                 <option value="Micro">Microservices</option>
@@ -233,6 +270,7 @@
                                     Embedded Systems
                                 </option>
                             </select>
+                            <p style="color: red; font-size: 10px;"> <?php echo $subjectErr;?></p>
 
                             <label for="email">Email:</label>
                             <input
@@ -240,8 +278,9 @@
                                 name="email"
                                 id="email"
                                 placeholder="e.g. hello@email.com"
-                                required
+                                
                             />
+                            <p style="color: red; font-size: 10px;"> <?php echo $emailErr;?></p>
 
                             <label for="contact_number">Contact Number:</label>
                             <input
@@ -251,11 +290,12 @@
                                 placeholder="e.g. 0987654321"
                                 pattern="[0-9]{10}"
                                 title="Mobile Number should be 10 digits"
-                                required
+                                
                             />
+                            <p style="color: red; font-size: 10px;"> <?php echo $contactlenErr;?></p>
 
                             <label for="coprogram">Co-Program:</label>
-                            <select name="coprogram" id="coprogram" required>
+                            <select name="coprogram" id="coprogram" >
                                 <option value="">...</option>
                                 <option value="NA">None</option>
                                 <option value="CPE">
@@ -265,6 +305,7 @@
                                     Electronics Engineering
                                 </option>
                             </select>
+                            <p style="color: red; font-size: 10px;"> <?php echo $coprogramErr;?></p>
                         </div>
                     </div>
                     <div class="button-container">
@@ -277,7 +318,7 @@
         <!-- PHP code for sending data to database -->
         <?php
         if (isset($_POST['submit'])) {
-            if (empty($errors)) {
+            if ($title_nameErr == "" && $adviser_nameErr == "" && $coadviser_nameErr == "" && $author1nameErr == "" && $author2nameErr == "" && $author3nameErr == "" && $programErr == "" && $coprogramErr == "" && $emailErr == "" && $contactErr == "" && $contactlenErr == "" && $subjectErr == "" && $submissionErr == "" && $schoolyearErr == "") {
                 $serverName = "DESKTOP-5QTREIB\SQLEXPRESS";
                 $connectionOptions = [
                     "Database" => "WEBAPP",
