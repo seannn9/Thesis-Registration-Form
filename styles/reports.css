@@ -1,0 +1,171 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Verdana';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    min-height: 100vh;
+    /* background-color: #3a5a40; */
+    /* color: #344e41; */
+    background-image:linear-gradient(
+        rgba(15, 17, 15, 0.3),
+        rgba(15, 17, 15, 0.3)
+    ), url('../images/dlsud.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.report-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-self: center;
+    background-color: #f0ebd8;
+    width: 500px;
+    width: 80%;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+table, th, td {
+    border: 2px solid #344e41;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+th {
+    background-color: #3a5a40;
+    color: #f0ebd8;
+}
+
+tr {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+tr:hover {
+    background-color: #588157;
+}
+
+.dlsud-logo {
+    text-align: center;
+}
+
+.navbar {
+    margin-bottom: 0;
+    padding: 5px;
+    list-style-type: none;
+    position: fixed;
+    background-color: #344e41;
+    overflow: hidden;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+}
+
+.navbar a {
+    border-radius: 8px;;
+    color: white;
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin: 0px 7px;
+}
+
+.navbar a:hover:not(.active) {
+    background-color: #405e40;
+}
+
+.active {
+    background-color: #588157;
+}
+
+.search-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px; 
+}
+
+.search-box input {
+    height: 25;
+    border: 3px solid #588157;
+    border-radius: 8px;
+    padding: 10px;
+    outline: none;
+    font-size: 24px;
+}
+
+.navbar form input {
+    text-align: center;
+}
+
+.user-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls-container {
+    margin-top: 70px;
+}
+
+.user-control .controls-container {
+    width: 100%;
+}
+
+.controls-container input{
+    padding: 10px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 8px;
+    width: 35%;
+}
+
+.controls-container input:focus {
+    border-color: #588157;
+}
+
+.controls-container select {
+    padding: 10px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.controls-container button {
+    background-color: #588157;
+    color: white;
+    width: 5%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.controls-container button:hover {
+    background-color: #3a5a40;
+}
+
+.total-count {
+    width:fit-content;
+    color: white; 
+    margin-top: 20px; 
+    border: 1px solid; 
+    border-radius: 8px; 
+    padding: 8px;
+    background-color:#3a5a40;
+}

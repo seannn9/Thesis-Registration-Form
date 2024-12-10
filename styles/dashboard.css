@@ -1,0 +1,53 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    color: #344e41;
+    background-image:linear-gradient(
+        rgba(15, 17, 15, 0.3),
+        rgba(15, 17, 15, 0.3)
+    ), url('../images/dlsud.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.dashboard-container {
+    padding: 20px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #f0ebd8;
+    border: 2px solid #f0ebd8;
+    border-radius: 8px;
+    width: 500px;
+    /* box-shadow: 10px 10px #283618; */
+}
+
+.dashboard-container .divider {
+    border-top: 2px solid #344e41;
+    width: 100%;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.options p {
+    width: 40%;
+    font-size: 1.5em;
+    border-radius: 8px;
+    align-self: center;
+    margin: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.options p:hover {
+    background-color: #a3b18a;
+}

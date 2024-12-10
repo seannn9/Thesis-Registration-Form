@@ -1,18 +1,55 @@
 body {
     font-family: "Verdana", sans-serif;
-    margin: 0;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(
-            rgba(0, 112, 4, 0.3),
-            rgba(0, 112, 4, 0.3)
+        rgba(15, 17, 15, 0.3),
+        rgba(15, 17, 15, 0.3)
         ),
-        url(./rotonda.jpg);
+        url(../images/dlsud.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.navbar {
+    margin-bottom: 0;
+    padding: 5px;
+    list-style-type: none;
+    position: fixed;
+    background-color: #344e41;
+    overflow: hidden;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+}
+
+.navbar a {
+    border-radius: 8px;;
+    color: white;
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    margin: 0px 7px;
+}
+
+.navbar a:hover:not(.active) {
+    background-color: #405e40;
+}
+
+.active {
+    background-color: #588157;
+}
+
+.thesis_form {
+    height: 100vh;
 }
 
 fieldset {
@@ -23,17 +60,19 @@ fieldset {
 .section {
     padding: 30px;
     border-radius: 15px;
-    width: 90%;
-    max-width: 900px;
+    margin-top: 65px;
+    margin-bottom: 20px;
+    width: 900px;
+    scale: 0.70;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    background-color: #ffffff;
+    background-color: #f0ebd8;
 }
 
 .title-legend {
     margin: 0 auto;
     font-size: 32px;
     font-weight: bold;
-    color: #00bd65;
+    color: #344e41;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -62,7 +101,7 @@ select {
     width: 100%;
     margin-bottom: 15px;
     padding: 12px;
-    border: 2px solid #00bd65;
+    border: 2px solid #405e40;
     border-radius: 5px;
     background-color: #f2f7f6;
     color: #102542;
@@ -75,6 +114,10 @@ input:focus,
 select:focus {
     border-color: #00703c;
     outline: none;
+}
+
+input[type=date], select {
+    height: calc(50px - 3.50px);
 }
 
 .name-group {
@@ -92,17 +135,17 @@ button {
     margin-left: 25px;
     margin-right: 25px;
     border: none;
-    border-radius: 5px;
-    background-color: #087830;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #588157;
     color: white;
     font-size: 18px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #007004;
-    transform: scale(1.1);
+    background-color: #3a5a40;
 }
 
 @media (max-width: 600px) {
@@ -115,4 +158,20 @@ button:hover {
     .right-column {
         width: 100%;
     }
+}
+
+.upload-file {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-file input {
+    
+    width: auto;
+}
+
+.upload-file button {
+    width: 20%;
 }

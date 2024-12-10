@@ -1,0 +1,59 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    color: #344e41;
+    background-image:linear-gradient(
+        rgba(15, 17, 15, 0.3),
+        rgba(15, 17, 15, 0.3)
+    ), url('../images/dlsud.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.login-container {
+    padding: 20px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #f0ebd8;
+    border: 2px solid #f0ebd8;
+    border-radius: 8px;
+    width: 500px;
+}
+
+.login-container .divider {
+    border-top: 2px solid #344e41;
+    width: 100%;
+}
+
+.login-container form input {
+    padding: 10px;
+    margin: 10px 0px;
+    width: 50%;
+    border: 2px solid #588157;
+    border-radius: 8px;
+}
+
+.login-container form button {
+    background-color: #588157;
+    color: white;
+    padding: 10px;
+    width: 15%;
+    border: 1px solid black;
+    border-radius: 8px;
+    transition: background-color 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.login-container form button:hover {
+    background-color: #3a5a40;
+}
+
+p {
+    color: rgb(141, 55, 55);
+}
