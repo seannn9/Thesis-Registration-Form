@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+    header("Location: Login.php"); 
+    exit;
+}
+
 $serverName = "DESKTOP-5QTREIB\SQLEXPRESS";
 $connectionOptions = [
     "Database" => "WEBAPP",
@@ -16,13 +23,6 @@ $totalcount = 0;
 $results = [];
 
 if (!empty($search)) {
-    // $sql = "SELECT DISTINCT(T.TITLE_ID), T.TITLE_NAME, T.PROGRAM, A.LAST_NAME AS AUTHOR_LAST, A.FIRST_NAME AS AUTHOR_FIRST, AD.LAST_NAME AS ADVISER_LAST, AD.FIRST_NAME AS ADVISER_FIRST
-    //         FROM TITLE AS T
-    //         LEFT JOIN AUTHOR AS A ON T.TITLE_ID = A.TITLE_ID
-    //         LEFT JOIN ADVISER AS AD ON T.TITLE_ID = AD.TITLE_ID
-    //         WHERE T.TITLE_NAME LIKE ? OR T.PROGRAM LIKE ? OR A.LAST_NAME LIKE ? OR A.FIRST_NAME LIKE ? OR AD.LAST_NAME LIKE ? OR AD.FIRST_NAME LIKE ?";
-    // $params = ["%$search%", "%$search%", "%$search%", "%$search%", "%$search%", "%$search%"];
-    // $result = sqlsrv_query($conn, $sql, $params);
     $sql = "WITH RankedResults AS (
         SELECT 
             t.TITLE_ID, 
@@ -36,8 +36,7 @@ if (!empty($search)) {
         FROM TITLE t 
         JOIN AUTHOR a ON t.TITLE_ID = a.TITLE_ID 
         LEFT JOIN ADVISER adv ON t.TITLE_ID = adv.TITLE_ID
-        WHERE t.TITLE_ID LIKE ?
-           OR t.TITLE_NAME LIKE ? 
+        WHERE t.TITLE_ID LIKE ? OR t.TITLE_NAME LIKE ? 
            OR t.PROGRAM LIKE ? 
            OR a.LAST_NAME LIKE ? 
            OR a.FIRST_NAME LIKE ? 
@@ -80,17 +79,18 @@ if (!empty($search)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/search.css">
-    <title>Search Thesis</title>
+    <title>Download Manuscript</title>
 </head>
 <body>
     <div class="navbar">
         <a href="./Registration.php">Registration</a>
-        <a href="./Search.php" class="active">Search</a>
+        <a href="./Search.php">Search</a>
         <a href="./SelectReports.php">Reports</a>
+        <a href="./DownloadPage.php" class="active">Download</a>
         <a href="./Dashboard.php" style="float: right">Dashboard</a>
     </div>
     <div class="search-container">
-        <h1>Search Thesis</h1>
+        <h1>Download Thesis Manuscript</h1>
         <form method="GET">
             <input type="text" name="search" id="search" placeholder="Search for a Thesis title, Program, or Author's/Adviser's first or last name..." value="<?php echo htmlspecialchars($search); ?>">
             <div class="button-container">
@@ -112,7 +112,7 @@ if (!empty($search)) {
                             <th>Program</th>
                             <th>Author (Last, First Name)</th>
                             <th>Adviser (Last, First Name)</th>
-                            <th>Chapter 1</th>
+                            <th>Manuscript</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,7 +122,7 @@ if (!empty($search)) {
                                 <td><?php echo htmlspecialchars($row['PROGRAM']); ?></td>
                                 <td><?php echo htmlspecialchars($row['AUTHOR_LAST'] . ', ' . $row['AUTHOR_FIRST']); ?></td>
                                 <td><?php echo htmlspecialchars($row['ADVISER_LAST'] . ', ' . $row['ADVISER_FIRST']); ?></td>
-                                <td><button onclick="window.location.href='ViewChapter1.php?TITLE_ID=<?php echo $row['TITLE_ID']; ?>'">View Chapter 1</button></td>
+                                <td><button onclick="window.location.href='Download.php?TITLE_ID=<?php echo $row['TITLE_ID']; ?>'">Download Manuscript</button></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

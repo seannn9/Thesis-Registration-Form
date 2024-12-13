@@ -10,8 +10,8 @@
     <body>
         <div class="navbar">
             <a href="./Registration.php" class="active">Registration</a>
-            <a href="./SelectReports.php">Reports</a>
             <a href="./Search.php">Search</a>
+            <a href="./SelectReports.php">Reports</a>
             <a href="./Dashboard.php" style="float: right">Dashboard</a>
         </div>
     <?php

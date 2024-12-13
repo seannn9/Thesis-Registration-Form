@@ -48,13 +48,27 @@ th {
     color: #f0ebd8;
 }
 
-tr {
+/* tr {
     cursor: pointer;
+    transition: background-color 0.3s ease;
+} */
+
+/* tr:hover {
+    background-color: #588157;
+} */
+
+td button {
+    border: 1px solid black;
+    color: white;
+    background-color: #588157;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 3px;
     transition: background-color 0.3s ease;
 }
 
-tr:hover {
-    background-color: #588157;
+td button:hover {
+    background-color: #3a5a40;
 }
 
 .dlsud-logo {

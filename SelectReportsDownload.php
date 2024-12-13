@@ -243,27 +243,31 @@ if (
                             echo "<th>Author Lastname</th>
                                   <th>Author Firstname</th>
                                   <th>Title ID</th>
-                                  <th>Title</th>";
+                                  <th>Title</th>
+                                  <th>Manuscript</th>";
                             break;
                         case 'ADVISER':
                             echo "<th>Adviser Lastname</th>
                                   <th>Adviser Firstname</th>
                                   <th>Title ID</th>
-                                  <th>Title</th>";
+                                  <th>Title</th>
+                                  <th>Manuscript</th>";
                             break;
                         case 'PROGRAM':
                             echo "<th>Program</th>
                                   <th>Title ID</th>
                                   <th>Title</th>
                                   <th>Author Lastname</th>
-                                  <th>Author Firstname</th>";
+                                  <th>Author Firstname</th>
+                                  <th>Manuscript</th>";
                             break;
                         default:
                             echo "<th>Title ID</th>
                                   <th>Title</th>
                                   <th>Program</th>
                                   <th>Author Lastname</th>
-                                  <th>Author Firstname</th>";
+                                  <th>Author Firstname</th>
+                                  <th>Manuscript</th>";
                             break;
                     }
                     ?>
@@ -271,41 +275,45 @@ if (
                 </tr>
             </thead>
             <tbody>
+                
                 <?php if (!empty($result)): ?>
-                        <?php
-                        while ($rows = sqlsrv_fetch_array($result)) {
-                            $titleId = $rows['TITLE_ID'];
-                            switch ($category) {
-                                case 'AUTHOR':
-                                case 'ADVISER':
-                                    echo "<tr>
-                                        <td>{$rows['LAST_NAME']}</td>
-                                        <td>{$rows['FIRST_NAME']}</td>
-                                        <td>{$rows['TITLE_ID']}</td>
-                                        <td>{$rows['TITLE_NAME']}</td>
-                                    </tr>";
-                                    break;
-                                case 'PROGRAM':
-                                    echo "<tr>
-                                        <td>{$rows['PROGRAM']}</td>
-                                        <td>{$rows['TITLE_ID']}</td>
-                                        <td>{$rows['TITLE_NAME']}</td>
-                                        <td>{$rows['LAST_NAME']}</td>
-                                        <td>{$rows['FIRST_NAME']}</td>
-                                    </tr>";
-                                    break;
-                                default:
-                                    echo "<tr>
-                                        <td>{$rows['TITLE_ID']}</td>
-                                        <td>{$rows['TITLE_NAME']}</td>
-                                        <td>{$rows['PROGRAM']}</td>
-                                        <td>{$rows['LAST_NAME']}</td>
-                                        <td>{$rows['FIRST_NAME']}</td>
-                                        </tr>";
-                                    break;
-                            }
+                    <?php
+                    while ($rows = sqlsrv_fetch_array($result)) {
+                        $titleId = $rows['TITLE_ID'];
+                        switch ($category) {
+                            case 'AUTHOR':
+                            case 'ADVISER':
+                                echo "<tr>
+                                    <td>{$rows['LAST_NAME']}</td>
+                                    <td>{$rows['FIRST_NAME']}</td>
+                                    <td>{$rows['TITLE_ID']}</td>
+                                    <td>{$rows['TITLE_NAME']}</td>
+                                    <td><button  onclick=\"window.location.href='Download.php?TITLE_ID=$titleId'\">Download Manuscript</button></td>
+                                </tr>";
+                                break;
+                            case 'PROGRAM':
+                                echo "<tr>
+                                    <td>{$rows['PROGRAM']}</td>
+                                    <td>{$rows['TITLE_ID']}</td>
+                                    <td>{$rows['TITLE_NAME']}</td>
+                                    <td>{$rows['LAST_NAME']}</td>
+                                    <td>{$rows['FIRST_NAME']}</td>
+                                    <td><button  onclick=\"window.location.href='Download.php?TITLE_ID=$titleId'\">Download Manuscript</button></td>
+                                </tr>";
+                                break;
+                            default:
+                                echo "<tr>
+                                    <td>{$rows['TITLE_ID']}</td>
+                                    <td>{$rows['TITLE_NAME']}</td>
+                                    <td>{$rows['PROGRAM']}</td>
+                                    <td>{$rows['LAST_NAME']}</td>
+                                    <td>{$rows['FIRST_NAME']}</td>
+                                    <td><button  onclick=\"window.location.href='Download.php?TITLE_ID=$titleId'\">Download Manuscript</button></td>
+                                </tr>";
+                                break;
                         }
-                        ?>
+                    }
+                    ?>
                 <?php endif; ?>
             </tbody>
         </table>
@@ -319,6 +327,7 @@ if (
         document.getElementById('category').addEventListener('change', function() {
             resetFields();
             document.querySelector('form').submit();
+            
         });
 
         function resetFields() {
@@ -332,6 +341,7 @@ if (
             }else if (category === 'PROGRAM') {
                 document.getElementById('program').selectedIndex = 0; 
             }
+            
         }
     </script>
 

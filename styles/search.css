@@ -127,15 +127,20 @@ th {
     color: #f0ebd8;
 }
 
-tr {
+p {
+    color: rgb(141, 55, 55);
+}
+
+td button {
+    border: 1px solid black;
+    color: white;
+    background-color: #588157;
     cursor: pointer;
+    border-radius: 8px;
+    padding: 5px;
     transition: background-color 0.3s ease;
 }
 
-tr:hover {
-    background-color: #588157;
-}
-
-p {
-    color: rgb(141, 55, 55);
+td button:hover {
+    background-color: #3a5a40;
 }

@@ -46,7 +46,7 @@
             <button align="center" type="submit" value="upload file" name="submit" style="margin-top: 10px">Upload File</button>
         </form>
         <div class="button-container">
-            <button onClick="window.location.href='Registration.php'">Register Thesis</button>
+            <!-- <button onClick="window.location.href='Registration.php'">Register Thesis</button> -->
             <button onClick="window.location.href='ViewEdit.php'">View / Edit</button>
         </div>
     </div>

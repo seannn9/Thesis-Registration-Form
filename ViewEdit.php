@@ -63,8 +63,8 @@
     <body>
         <div class="navbar">
             <a href="./Registration.php">Registration</a>
-            <a href="./SelectReports.php">Reports</a>
             <a href="./Search.php">Search</a>
+            <a href="./SelectReports.php">Reports</a>
             <a href="./Dashboard.php" style="float: right">Dashboard</a>
         </div>
     <?php
@@ -400,7 +400,6 @@
                         <button onClick="event.preventDefault(); window.location.href='./Registration.php'">Go Back</button>   
                         <button
                         onClick="return confirm('Do you want to proceed?');" type="submit" value="Submit" name="submit">Update</button>
-                        <button onClick="event.preventDefault(); window.location.href='./reports/SelectReports.php'">View Report</button>   
                     </div>
                 </fieldset>
             </div>
